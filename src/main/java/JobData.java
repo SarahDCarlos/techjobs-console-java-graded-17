@@ -42,6 +42,9 @@ public class JobData {
             }
         }
 
+//        // Bonus mission: sort the results
+//        Collections.sort(values);
+
         return values;
     }
 
@@ -49,6 +52,7 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+
 
         return allJobs;
     }
@@ -75,7 +79,9 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+//            Case sensitive
+
+            if (aValue.toUpperCase().contains(value.toUpperCase())) {
                 jobs.add(row);
             }
         }
@@ -94,8 +100,23 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
+        // TO0DO - implement this method
+        // create an empty array to hold the new array that will contain values
+        ArrayList<HashMap<String, String>> valueJobs = new ArrayList<>();
+        // I want to loop through each hashmap(job) and see if its equal to the known value
+        for (HashMap<String, String> jobs : allJobs){
+            String [] newJobs = jobs.values().toArray( new String[jobs.size()]);
+            for(int i=0; i< newJobs.length; i++){
+                if(newJobs[i].toUpperCase().contains(value.toUpperCase())) {
+                    valueJobs.add(jobs);
+                }
+            }
+
+        }
+        // if it contain the known value that I should add that hashmap new array
+
+
+        return valueJobs;
     }
 
     /**
